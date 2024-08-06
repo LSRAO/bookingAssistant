@@ -1,0 +1,41 @@
+version: "3.1"
+
+nlu:
+- intent: flight
+  examples: |
+    - I need a flight from [BOM](source) to [DEL](destination) on [25-01-2019](date)
+    - Book a flight from [HYD](source) to [BLR](destination)
+    - Find flights from [MAA](source) to [PNQ](destination)
+    - Flights from [IXC](source) to [CCU](destination) on [21-04-2019](date)
+    - Can I get a flight from [DEL](source) to [BOM](destination) on [09-02-2019](date)
+
+- intent: inform
+  examples: |
+    - I'm flying from [DEL](source)
+    - My destination is [BOM](destination)
+    - I need a flight on [09-01-2019](date)
+    - From [HYD](source)
+    - To [CCU](destination)
+    - On [20-02-2024](date)
+    - From [BLR](source) to [PNQ](destination)
+
+- intent: choose_airline
+    examples: |
+      - I want to book [Airline A](airline)
+      - Book me on [Airline B](airline)
+      - Can I get a flight with [Airline C](airline)
+      - I prefer [Airline D](airline)
+      - [Airline E](airline) is my choice
+      - Book a flight with [Airline F](airline)
+
+- intent: affirmation
+  examples: |
+    - yes
+    - sure
+    - ok
+
+- intent: deny
+  examples: |
+    - no
+    - not now
+    - maybe later

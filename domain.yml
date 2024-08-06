@@ -1,0 +1,99 @@
+version: "3.1"
+
+intents:
+  - flight
+  - inform
+  - choose_airline
+  - affirmation
+  - deny
+
+entities:
+  - source
+  - destination
+  - date
+  - airline
+
+slots:
+  source:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: source
+
+  destination:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: destination
+
+  date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: date
+  
+  airline:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: airline 
+
+actions:
+- utter_boarding
+- utter_destination
+- utter_date
+- utter_confirm
+- utter_check_another_one
+- utter_thanks
+- utter_unclear
+- action_save_origin
+- action_save_destination
+- action_save_date
+- action_get_flight
+- action_slot_reset
+- action_extract_flight_info
+
+templates:
+  utter_unclear:
+    - text: "I'm sorry, I didn't understand that. Could you please clarify?"
+
+  utter_boarding:
+    - text: "Where are you flying from?"
+
+  utter_destination:
+    - text: "Where are you flying to?"
+
+  utter_date:
+    - text: "When do you want to fly?"
+    
+  utter_ask_airline:
+    - text: "Which airline would you prefer?"
+
+  utter_confirm:
+    - text: "I have your flight from {source} to {destination} on {date}. Is that correct?"
+
+  utter_check_another_one:
+    - text: "Would you like to check another flight?"
+
+  utter_thanks:
+    - text: "Thank you! Have a great day!"
+
+  utter_greet:
+    - text: "Hello! How can I assist you with your flight today?"
+
+  utter_flight_search_results:
+    - text: "Here are the results for your flight search."
+
+  utter_flight_booked:
+    - text: "Your flight has been successfully booked."
+
+  utter_goodbye:
+    - text: "Goodbye! Have a nice day."
+
+  utter_iamabot:
+    - text: "I am a chatbot here to assist you with flight bookings."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

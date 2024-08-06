@@ -1,0 +1,202 @@
+version: "3.1"
+
+stories:
+- story: book flight with complete information
+  steps:
+  - intent: flight
+    entities:
+    - source: "BOM"
+    - destination: "DEL"
+    - date: "25-01-2019"
+  - action: action_extract_flight_info
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: book flight with only source
+  steps:
+  - intent: flight
+    entities:
+    - source: "BOM"
+  - action: action_extract_flight_info
+  - action: utter_destination
+  - intent: inform
+    entities:
+    - destination: "DEL"
+  - action: action_extract_flight_info
+  - action: utter_date
+  - intent: inform
+    entities:
+    - date: "25-01-2019"
+  - action: action_extract_flight_info
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: book flight with only destination
+  steps:
+  - intent: flight
+    entities:
+    - destination: "DEL"
+  - action: action_extract_flight_info
+  - action: utter_boarding
+  - intent: inform
+    entities:
+    - source: "BOM"
+  - action: action_extract_flight_info
+  - action: utter_date
+  - intent: inform
+    entities:
+    - date: "25-01-2019"
+  - action: action_extract_flight_info
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: book flight with only date
+  steps:
+  - intent: flight
+    entities:
+    - date: "25-01-2019"
+  - action: action_extract_flight_info
+  - action: utter_boarding
+  - intent: inform
+    entities:
+    - source: "BOM"
+  - action: action_extract_flight_info
+  - action: utter_destination
+  - intent: inform
+    entities:
+    - destination: "DEL"
+  - action: action_extract_flight_info
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: book flight with partial information
+  steps:
+  - intent: flight
+    entities:
+    - source: "DEL"
+    - destination: "BOM"
+  - action: action_extract_flight_info
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: book a flight
+  steps:
+  - intent: flight
+  - action: utter_boarding
+  - intent: inform
+    entities:
+      - source: "BOM"
+  - action: action_save_origin
+  - slot_was_set:
+    - source: "BOM"
+  - action: utter_destination
+  - intent: inform
+    entities:
+      - destination: "DEL"
+  - action: action_save_destination
+  - slot_was_set:
+    - destination: "DEL"
+  - action: utter_date
+  - intent: inform
+    entities:
+      - date: "20-01-2019"
+  - action: action_save_date
+  - slot_was_set:
+    - date: "20-01-2019"
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: book multiple flights
+  steps:
+  - intent: flight
+  - action: utter_boarding
+  - intent: inform
+    entities:
+      - source: "CCU"
+  - action: action_save_origin
+  - slot_was_set:
+    - source: "CCU"
+  - action: utter_destination
+  - intent: inform
+    entities:
+      - destination: "BLR"
+  - action: action_save_destination
+  - slot_was_set:
+    - destination: "BLR"
+  - action: utter_date
+  - intent: inform
+    entities:
+      - date: "03-02-2019"
+  - action: action_save_date
+  - slot_was_set:
+    - date: "03-02-2019"
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: affirmation
+  - action: action_slot_reset
+  - action: action_restart
+  - action: utter_boarding
+  - intent: inform
+    entities:
+      - source: "BOM"
+  - action: action_save_origin
+  - slot_was_set:
+    - source: "BOM"
+  - action: utter_destination
+  - intent: inform
+    entities:
+      - destination: "DEL"
+  - action: action_save_destination
+  - slot_was_set:
+    - destination: "DEL"
+  - action: utter_date
+  - intent: inform
+    entities:
+      - date: "10-02-2019"
+  - action: action_save_date
+  - slot_was_set:
+    - date: "10-02-2019"
+  - action: utter_confirm
+  - intent: affirmation
+  - action: action_get_flight
+  - action: utter_check_another_one
+  - intent: deny
+  - action: utter_thanks
+  - action: action_restart
+
+- story: unclear input
+  steps:
+  - action: utter_unclear
+
